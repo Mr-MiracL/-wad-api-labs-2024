@@ -40,6 +40,12 @@ router.delete('/:id', async (req, res) => {
     } else {
         res.status(404).json({ code: 404, msg: 'Unable to find Task' });
     }
+
+});// Get all tasks
+router.get('/', async (req, res) => {
+    const tasks = await Task.find().populate('userId', 'username');
+    res.status(200).json(tasks);
 });
+
 
 export default router;
